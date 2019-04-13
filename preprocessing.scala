@@ -9,3 +9,14 @@ import spark.implicits._
 println("Reading data from " + train + " file")
 
 val trainInput = spark.read
+    .option("header","true")
+    .option("inferSchema","true")
+    .format("com.databricks.spark.csv")
+    .load(train)
+    .cache
+val testInput = spark.read
+    .option("header","true")
+    .option("inferSchema","true")
+    .format("com.databricks.spark.csv")
+    .load(test)
+    .cache
